@@ -28,9 +28,17 @@ public class Jukebox implements Runnable, ActionListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	Song s1 = new Song("Seagull sounds (1).mp3");
-JButton rickrollbutton = new JButton();
-Song s2 = new Song("Rick Astley - Never Gonna Give You Up (Video).mp3");
-	
+	JButton rickrollbutton = new JButton();
+	Song s2 = new Song("Rick Astley - Never Gonna Give You Up (Official Music Video).mp3");
+	JButton crabbutton = new JButton();
+	Song s3 = new Song("Noisestorm - Crab Rave [Monstercat Release].mp3");
+	JButton defaultbutton = new JButton();
+	Song s4 = new Song("Fortnite Default Dance Bass Boosted.mp3");
+	JButton anthembutton = new JButton();
+	Song s5 = new Song("National Anthem of USSR.mp3");
+	JButton ussrbutton = new JButton();
+	Song s6 = new Song("USSR (YMCA PARODY).mp3");
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Jukebox());
 
@@ -51,14 +59,26 @@ Song s2 = new Song("Rick Astley - Never Gonna Give You Up (Video).mp3");
 		 */
 
 		seagullbutton.setText("Seagull Noises");
+		crabbutton.setText("Barc");
+		defaultbutton.setText("Default");
+		anthembutton.setText("USSR");
+		ussrbutton.setText("YMCA");
 		frame.add(panel);
 		panel.add(seagullbutton);
+		panel.add(crabbutton);
 		frame.setVisible(true);
 		seagullbutton.addActionListener(this);
+		crabbutton.addActionListener(this);
+		defaultbutton.addActionListener(this);
+		anthembutton.addActionListener(this);
+		ussrbutton.addActionListener(this);
 		rickrollbutton.setText("Calming Waves");
 		rickrollbutton.addActionListener(this);
 		panel.add(rickrollbutton);
-frame.pack();
+		panel.add(defaultbutton);
+		panel.add(anthembutton);
+		panel.add(ussrbutton);
+		frame.pack();
 
 	}
 
@@ -78,6 +98,18 @@ frame.pack();
 		}
 		if (buttonPressed == (rickrollbutton)) {
 			s2.play();
+		}
+		if (buttonPressed == (crabbutton)) {
+			s3.play();
+		}
+		if (buttonPressed == (defaultbutton)) {
+			s4.play();
+		}
+		if (buttonPressed == (anthembutton)) {
+			s5.play();
+		}
+		if (buttonPressed == (ussrbutton)) {
+			s6.play();
 		}
 
 	}
