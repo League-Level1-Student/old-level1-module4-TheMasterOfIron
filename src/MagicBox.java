@@ -46,6 +46,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		} catch (Exception w) {
 			System.err.println(w.getMessage());
 		}
+		
 	}
 
 	private void createUI() {
@@ -55,7 +56,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
