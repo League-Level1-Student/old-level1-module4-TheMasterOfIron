@@ -6,7 +6,7 @@ public static void main(String[] args) {
 	for (int i = 0; i < 10000; i++) {
 		s1.play();
 		try {
-			Thread.sleep(600000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
