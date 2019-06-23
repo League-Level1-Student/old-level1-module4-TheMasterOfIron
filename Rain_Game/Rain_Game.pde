@@ -1,3 +1,4 @@
+int dropYSpeed = 3;
 int bucketX = 0;
 int score = 0;
 int dropX = 0;
@@ -16,9 +17,12 @@ void draw(){
   fill(0,50,200);
   stroke(0,50,200);
   triangle(dropX,dropY+20,dropX+10,dropY+20,dropX+5,dropY);
-  dropY +=3;
+  dropY +=dropYSpeed;
+  if((dropY < 430)&&(dropY+dropYSpeed>= 430)){
+checkCatch(dropX);
+  }
   if(dropY >= 450){
-    int randomNumber = (int) random(width);
+    int randomNumber = (int) random(width-10);
     dropY = -20;
     dropX = randomNumber;
   }
@@ -27,15 +31,16 @@ void draw(){
   rect(bucketX,415,30,35);
   fill(0, 0, 0);
     textSize(16);
-    text(score, bucketX+ 11, 440);
-    
+    text(score, bucketX+ 11, 440);   
 }
 void checkCatch(int x){
-         if (x > mouseX && x < mouseX+100)
+         if ((x > mouseX && x < mouseX+100))
             score++;
-         else if (score > 0) 
-            score--;
-        println("Your score is now: " + score);
+            dropYSpeed -= 1;
+          if (score > 0){
+              score--;
+       dropYSpeed += 2;
+        }
     }
 void setup(){
   size(250,450);
