@@ -14,8 +14,8 @@ int rightpaddleX = 1050;
 int rightpaddleY = 375;
 int rightpaddleLength = 75;
 int rightpaddleSpeed = 4;
-boolean intersects(int ballX, int ballY, int paddleX, int paddleY, int paddleLength) {
-  if ((ballY > paddleY) && (ballY < paddleY + paddleLength)&& (ballX <= paddleX + 10 )) {
+boolean intersects(int ballX, int ballY, int paddleLength) {
+  if (((ballY > paddleY) && (ballY < paddleY + paddleLength) && ((ballX > paddleX) && (ballX < paddleX + 10 )) || (ballX > rightpaddleX) && (ballX < rightpaddleX + 10))) {
     sound.trigger();
     return true;
   } else
@@ -61,7 +61,7 @@ void draw() {
     ballYspeed = -ballYspeed;
     sound.trigger();
   }
-  if ((ballXspeed <0 ) && intersects(ballX, ballY, paddleX, paddleY, paddleLength)) {
+  if (intersects(ballX, ballY, paddleLength)) {
     ballXspeed = -ballXspeed;
   }
   //if ((ballXspeed >0)  && intersects(ballX, ballY, rightpaddleX, rightpaddleY, rightpaddleLength)){
