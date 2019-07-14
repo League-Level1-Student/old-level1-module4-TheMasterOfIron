@@ -55,6 +55,10 @@ void draw() {
   rect(630, 240, 20, 80);
   rect(630, 400, 20, 80);
   rect(630, 350, 20, 20);
+    text(userScore, 450, 150);
+    textSize(75);
+    text(aiScore, 775, 150);
+    textSize(75);
   image(backgroundImage, 0, 0);
   fill(255, 255, 255);
   stroke(0, 50, 255);
