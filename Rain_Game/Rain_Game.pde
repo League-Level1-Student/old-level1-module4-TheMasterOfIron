@@ -1,9 +1,14 @@
+int menuBackgroundX = 250;
+int menuBackgroundY = 450;
 int dropYSpeed = 3;
 int bucketX = 0;
 int score = 0;
 int dropX = 0;
 int dropY = 450;
 void draw(){
+  if(dropYSpeed > 10){
+    dropYSpeed = 10;
+  }
   if(mouseX < 220){
       bucketX = mouseX;
     }
@@ -34,12 +39,13 @@ checkCatch(dropX);
     text(score, bucketX+ 11, 440);   
 }
 void checkCatch(int x){
-         if ((x > mouseX && x < mouseX+100))
+         if ((x > mouseX && x < mouseX+100)){
             score++;
-            dropYSpeed -= 1;
-          if (score > 0){
+            dropYSpeed ++;
+         }
+          else if (score > 0){
               score--;
-       dropYSpeed += 2;
+       dropYSpeed --;
         }
     }
 void setup(){
