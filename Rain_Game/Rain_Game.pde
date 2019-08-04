@@ -10,6 +10,7 @@ int bucketX = 0;
 int score = 0;
 int dropX = 0;
 int dropY = 450;
+boolean hasSelectedDifficulty = false;
 void backgroundColor() {
   if (colorState == 0) {
     green += 4;
@@ -61,6 +62,17 @@ void backgroundColor() {
       colorState = 0;
     }
   }
+  if (colorState == 6) {
+    if (blue > 0) {
+      blue --;
+    }
+    if (red > 0) {
+      red --;
+    }
+    if (green < 255) {
+      green ++;
+    }
+  }
   if (colorState == 7) {
     if (blue > 0) {
       blue --;
@@ -72,30 +84,72 @@ void backgroundColor() {
       green ++;
     }
   }
+  if (colorState == 8) {
+    if (blue > 0) {
+      blue --;
+    }
+    if (red < 255) {
+      red ++;
+    }
+    if (green > 0) {
+      green --;
+    }
+  }
+  if (colorState == 9) {
+    if (blue > 0) {
+      blue --;
+    }
+    if (red > 0) {
+      red--;
+    }
+    if (green > 0) {
+      green --;
+    }
+  }
 }
 void mousePressed() {
+  if(hasSelectedDifficulty == false){
   if (mouseX > 25 && mouseY > 59 && mouseX < 225 && mouseY < 179) {
     println("Easy Mode Selected");
     difficulty = 1;
+    colorState = 6;
+    hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 189 && mouseX < 225 && mouseY < 309) {
     println("Normal Mode Selected");
     difficulty = 2;
     colorState = 7;
+        hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 319 && mouseX < 225 && mouseY < 440) {
     println("Hard Mode Selected");
     difficulty = 3;
+    colorState = 8;
+        hasSelectedDifficulty = true;
   } else if (mouseX > 0 && mouseY > 0 && mouseX < 250 && mouseY < 450) {
     println("Insane Mode Selected");
     difficulty = 4;
+    colorState = 9;
+        hasSelectedDifficulty = true;
+  }
   }
   println(mouseX);
   println(mouseY);
 }
 void draw() {
   backgroundColor();
+  if (difficulty == 0){
+    fill(200, 200, 200);
+  stroke(200, 200, 200);
+  rect(bucketX, 415, 30, 35);
+  }
   if (difficulty == 2) {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
+      fill(0, 50, 200);
+  stroke(0, 50, 200);
+  ellipse(dropX+5, dropY+20, 10, 14);
+  fill(0, 50, 200);
+  stroke(0, 50, 200);
+  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
     }
   }
   if (mouseX < 220) {
@@ -104,12 +158,6 @@ void draw() {
     bucketX = 220;
   }
   background(red, green, blue);
-  fill(0, 50, 200);
-  stroke(0, 50, 200);
-  ellipse(dropX+5, dropY+20, 10, 14);
-  fill(0, 50, 200);
-  stroke(0, 50, 200);
-  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   dropY +=dropYSpeed;
   if ((dropY < 430)&&(dropY+dropYSpeed>= 430)) {
     checkCatch(dropX);
@@ -119,18 +167,17 @@ void draw() {
     dropY = -20;
     dropX = randomNumber;
   }
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  rect(bucketX, 415, 30, 35);
   fill(0, 0, 0);
   textSize(16);
   text(score, bucketX+ 11, 440);   
+    if(hasSelectedDifficulty == false){
   fill(0, 255, 0);
   rect(25, 59, 200, 120);
   fill(255, 255, 0);
   rect(25, 189, 200, 120);
   fill(255, 0, 0);
   rect(25, 319, 200, 120);
+    }
 }
 void checkCatch(int x) {
   if ((x > mouseX && x < mouseX+100)) {
