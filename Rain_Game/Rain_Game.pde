@@ -135,29 +135,44 @@ void mousePressed() {
   println(mouseY);
 }
 void draw() {
+    background(red, green, blue);
   backgroundColor();
   if (difficulty == 0){
-    fill(200, 200, 200);
-  stroke(200, 200, 200);
-  rect(bucketX, 415, 30, 35);
+   
   }
-  if (difficulty == 2) {
+  else if (difficulty == 1) {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
-      fill(0, 50, 200);
+    }
+    fill(0, 50, 200);
   stroke(0, 50, 200);
   ellipse(dropX+5, dropY+20, 10, 14);
   fill(0, 50, 200);
   stroke(0, 50, 200);
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+  fill(200, 200, 200);
+  stroke(200, 200, 200);
+  rect(bucketX, 415, 30, 35);
+  }
+  else if (difficulty == 2) {
+    if (dropYSpeed > 10) {
+      dropYSpeed = 10;
     }
+    fill(0, 50, 200);
+  stroke(0, 50, 200);
+  ellipse(dropX+5, dropY+20, 10, 14);
+  fill(0, 50, 200);
+  stroke(0, 50, 200);
+  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+  fill(200, 200, 200);
+  stroke(200, 200, 200);
+  rect(bucketX, 415, 30, 35);
   }
   if (mouseX < 220) {
     bucketX = mouseX;
   } else if (mouseX >= 220) {
     bucketX = 220;
   }
-  background(red, green, blue);
   dropY +=dropYSpeed;
   if ((dropY < 430)&&(dropY+dropYSpeed>= 430)) {
     checkCatch(dropX);
