@@ -6,9 +6,13 @@ int difficulty = 0;
 int menuBackgroundX = 250;
 int menuBackgroundY = 450;
 int dropYSpeed = 3;
+int dropYSpeedDecrease = 1;
+int alreadyHitBottom = 0;
 int bucketX = 0;
 int bucketWidth = 0;
 int score = 0;
+int scoreOffset = 1;
+int scoreOffsetIncreased = 0;
 int dropX = 0;
 int dropY = 450;
 boolean hasSelectedDifficulty = false;
@@ -145,6 +149,7 @@ void draw() {
     if (dropYSpeed > 5) {
       dropYSpeed = 5;
     }
+    dropYSpeedDecrease = 1;
     bucketWidth = 60;
     fill(0, 50, 200);
   stroke(0, 50, 200);
@@ -160,12 +165,45 @@ void draw() {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
     }
+    dropYSpeedDecrease = 1;
     bucketWidth = 30;
     fill(0, 50, 200);
   stroke(0, 50, 200);
   ellipse(dropX+5, dropY+20, 10, 14);
   fill(0, 50, 200);
   stroke(0, 50, 200);
+  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+  fill(200, 200, 200);
+  stroke(200, 200, 200);
+  rect(bucketX, 415, bucketWidth, 35);
+  }
+  else if (difficulty == 3) {
+    if (dropYSpeed > 15) {
+      dropYSpeed = 15;
+    }
+    dropYSpeedDecrease = 1;
+    bucketWidth = 25;
+    fill(0, 50, 200);
+  stroke(0, 50, 200);
+  ellipse(dropX+5, dropY+20, 10, 14);
+  fill(0, 50, 200);
+  stroke(0, 50, 200);
+  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+  fill(200, 200, 200);
+  stroke(200, 200, 200);
+  rect(bucketX, 415, bucketWidth, 35);
+  }
+  else if (difficulty == 4) {
+    if (dropYSpeed > 25) {
+      dropYSpeed = 25;
+    }
+    dropYSpeedDecrease = 1000000;
+    bucketWidth = 15;
+    fill(25, 25, 25);
+  stroke(25, 25, 25);
+  ellipse(dropX+5, dropY+20, 10, 14);
+  fill(25, 25, 25);
+  stroke(25, 25, 25);
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
@@ -184,11 +222,19 @@ void draw() {
     int randomNumber = (int) random(width-10);
     dropY = -20;
     dropX = randomNumber;
+    alreadyHitBottom = 0;
   }
   fill(0, 0, 0);
   textSize(16);
-  text(score, bucketX+bucketWidth / 2 - 4, 440);
-  if sc
+  text(score, bucketX+bucketWidth / 2 - scoreOffset * 4, 440);
+  if (score >= 10 && scoreOffsetIncreased == 0){
+   scoreOffset ++;
+   scoreOffsetIncreased ++;
+  }
+  else if (score < 10 && scoreOffsetIncreased == 1){
+   scoreOffset --;
+   scoreOffsetIncreased --;
+  }
     if(hasSelectedDifficulty == false){
   fill(0, 255, 0);
   rect(25, 59, 200, 120);
@@ -202,9 +248,10 @@ void checkCatch(int x) {
   if ((x >= mouseX && x < mouseX+bucketWidth)) {
     score++;
     dropYSpeed ++;
-  } else if (score > 0) {
+  } else if (score > 0 && alreadyHitBottom == 0) {
     score--;
-    dropYSpeed --;
+    dropYSpeed -= dropYSpeedDecrease;
+    alreadyHitBottom = 1;
   }
 }
 void setup() {
