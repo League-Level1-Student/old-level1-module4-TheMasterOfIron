@@ -7,6 +7,7 @@ int menuBackgroundX = 250;
 int menuBackgroundY = 450;
 int dropYSpeed = 3;
 int bucketX = 0;
+int bucketWidth = 0;
 int score = 0;
 int dropX = 0;
 int dropY = 450;
@@ -141,9 +142,10 @@ void draw() {
    
   }
   else if (difficulty == 1) {
-    if (dropYSpeed > 10) {
-      dropYSpeed = 10;
+    if (dropYSpeed > 5) {
+      dropYSpeed = 5;
     }
+    bucketWidth = 60;
     fill(0, 50, 200);
   stroke(0, 50, 200);
   ellipse(dropX+5, dropY+20, 10, 14);
@@ -152,12 +154,13 @@ void draw() {
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, 30, 35);
+  rect(bucketX, 415, bucketWidth, 35);
   }
   else if (difficulty == 2) {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
     }
+    bucketWidth = 30;
     fill(0, 50, 200);
   stroke(0, 50, 200);
   ellipse(dropX+5, dropY+20, 10, 14);
@@ -166,7 +169,7 @@ void draw() {
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, 30, 35);
+  rect(bucketX, 415, bucketWidth, 35);
   }
   if (mouseX < 220) {
     bucketX = mouseX;
@@ -184,7 +187,8 @@ void draw() {
   }
   fill(0, 0, 0);
   textSize(16);
-  text(score, bucketX+ 11, 440);   
+  text(score, bucketX+bucketWidth / 2 - 4, 440);
+  if sc
     if(hasSelectedDifficulty == false){
   fill(0, 255, 0);
   rect(25, 59, 200, 120);
@@ -195,7 +199,7 @@ void draw() {
     }
 }
 void checkCatch(int x) {
-  if ((x > mouseX && x < mouseX+100)) {
+  if ((x >= mouseX && x < mouseX+bucketWidth)) {
     score++;
     dropYSpeed ++;
   } else if (score > 0) {
