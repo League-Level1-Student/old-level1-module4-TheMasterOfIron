@@ -1,3 +1,5 @@
+//All Int Variables
+
 int colorState = 0;
 int red = 255;
 int blue = 0;
@@ -5,7 +7,7 @@ int green = 0;
 int difficulty = 0;
 int menuBackgroundX = 250;
 int menuBackgroundY = 450;
-int dropYSpeed = 3;
+int dropYSpeed = 0;
 int dropYSpeedDecrease = 1;
 int alreadyHitBottom = 0;
 int bucketX = 0;
@@ -15,7 +17,20 @@ int scoreOffset = 1;
 int scoreOffsetIncreased = 0;
 int dropX = 0;
 int dropY = 450;
-boolean hasSelectedDifficulty = false;
+
+//All Boolean Variables
+
+boolean hasSelectedDifficulty = false; 
+
+//All String Variables
+
+String title = "Rain Game";
+String easyButtonText = "Easy";
+String normalButtonText = "Normal";
+String hardButtonText = "Hard";
+
+//Background Color Switching
+
 void backgroundColor() {
   if (colorState == 0) {
     green += 4;
@@ -112,39 +127,60 @@ void backgroundColor() {
     }
   }
 }
+
+//All The Main Menu Stuff
+
 void mousePressed() {
   if(hasSelectedDifficulty == false){
   if (mouseX > 25 && mouseY > 59 && mouseX < 225 && mouseY < 179) {
     println("Easy Mode Selected");
     difficulty = 1;
     colorState = 6;
+    dropYSpeed = 2;
     hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 189 && mouseX < 225 && mouseY < 309) {
     println("Normal Mode Selected");
     difficulty = 2;
     colorState = 7;
+    dropYSpeed = 3;
         hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 319 && mouseX < 225 && mouseY < 440) {
     println("Hard Mode Selected");
     difficulty = 3;
     colorState = 8;
+    dropYSpeed = 4;
         hasSelectedDifficulty = true;
   } else if (mouseX > 0 && mouseY > 0 && mouseX < 250 && mouseY < 450) {
     println("Insane Mode Selected");
     difficulty = 4;
     colorState = 9;
+    dropYSpeed = 5;
         hasSelectedDifficulty = true;
   }
   }
+  
+//Show Coordinates When Clicked
+  
   println(mouseX);
   println(mouseY);
 }
+
+//Draw Methood
+
 void draw() {
+  
+//Background Color
+  
     background(red, green, blue);
   backgroundColor();
+  
+//Nothing Happens If Difficulty Is 0
+  
   if (difficulty == 0){
-   
   }
+  
+//Easy Specific Scripts
+  
   else if (difficulty == 1) {
     if (dropYSpeed > 5) {
       dropYSpeed = 5;
@@ -161,6 +197,9 @@ void draw() {
   stroke(200, 200, 200);
   rect(bucketX, 415, bucketWidth, 35);
   }
+  
+//Medium Specific Scripts
+  
   else if (difficulty == 2) {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
@@ -177,11 +216,14 @@ void draw() {
   stroke(200, 200, 200);
   rect(bucketX, 415, bucketWidth, 35);
   }
+  
+//Hard Specific Scripts
+  
   else if (difficulty == 3) {
     if (dropYSpeed > 15) {
       dropYSpeed = 15;
     }
-    dropYSpeedDecrease = 1;
+    dropYSpeedDecrease = 2;
     bucketWidth = 25;
     fill(0, 50, 200);
   stroke(0, 50, 200);
@@ -193,6 +235,9 @@ void draw() {
   stroke(200, 200, 200);
   rect(bucketX, 415, bucketWidth, 35);
   }
+  
+//Insane Specific Scripts
+  
   else if (difficulty == 4) {
     if (dropYSpeed > 25) {
       dropYSpeed = 25;
@@ -209,11 +254,23 @@ void draw() {
   stroke(200, 200, 200);
   rect(bucketX, 415, bucketWidth, 35);
   }
+  
+//Bucket Stuff
+  
   if (mouseX < 220) {
     bucketX = mouseX;
   } else if (mouseX >= 220) {
     bucketX = 220;
   }
+  
+//Preventon Of Reversed Rain
+
+if(dropYSpeed < 0){
+  dropYSpeed = 0;
+}
+
+//Drop Being Caught Or Not And Teleportation
+  
   dropY +=dropYSpeed;
   if ((dropY < 430)&&(dropY+dropYSpeed>= 430)) {
     checkCatch(dropX);
@@ -224,6 +281,10 @@ void draw() {
     dropX = randomNumber;
     alreadyHitBottom = 0;
   }
+  
+//Score Scripts
+  
+  if(hasSelectedDifficulty == true){
   fill(0, 0, 0);
   textSize(16);
   text(score, bucketX+bucketWidth / 2 - scoreOffset * 4, 440);
@@ -235,15 +296,33 @@ void draw() {
    scoreOffset --;
    scoreOffsetIncreased --;
   }
+  }
+  
+//Main Menu Boxes
+  
     if(hasSelectedDifficulty == false){
   fill(0, 255, 0);
   rect(25, 59, 200, 120);
+  fill(0, 0, 0);
+  textSize(40);
+  text(easyButtonText, 85, 134);
   fill(255, 255, 0);
   rect(25, 189, 200, 120);
+  fill(0, 0, 0);
+  textSize(40);
+  text(normalButtonText, 55, 264);
   fill(255, 0, 0);
   rect(25, 319, 200, 120);
+  fill(0, 0, 0);
+  textSize(40);
+  text(hardButtonText, 80, 394);
+  textSize(40);
+  text(title, 22, 40);
     }
 }
+
+//Checking To See If Drop Has Been Caught Or Not
+
 void checkCatch(int x) {
   if ((x >= mouseX && x < mouseX+bucketWidth)) {
     score++;
@@ -253,7 +332,17 @@ void checkCatch(int x) {
     dropYSpeed -= dropYSpeedDecrease;
     alreadyHitBottom = 1;
   }
+  else if (score == 0 && alreadyHitBottom == 0) {
+    dropYSpeed -= dropYSpeedDecrease;
+    alreadyHitBottom = 1;
+  }
 }
+
+//Setup Methood
+
 void setup() {
+  
+//Setting Size Of Screen
+
   size(250, 450);
 }
