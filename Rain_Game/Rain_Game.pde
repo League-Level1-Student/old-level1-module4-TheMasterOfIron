@@ -20,7 +20,8 @@ int dropY = 450;
 
 //All Boolean Variables
 
-boolean hasSelectedDifficulty = false; 
+boolean hasSelectedDifficulty = false;
+boolean lost = false;
 
 //All String Variables
 
@@ -28,7 +29,8 @@ String title = "Rain Game";
 String easyButtonText = "Easy";
 String normalButtonText = "Normal";
 String hardButtonText = "Hard";
-
+String loseScreenText = "You Lose!";
+String loseScreenScoreText = "Your Score Was" + score +".";
 //Background Color Switching
 
 void backgroundColor() {
@@ -137,24 +139,28 @@ void mousePressed() {
     difficulty = 1;
     colorState = 6;
     dropYSpeed = 2;
+    dropYSpeedDecrease = 1;
     hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 189 && mouseX < 225 && mouseY < 309) {
     println("Normal Mode Selected");
     difficulty = 2;
     colorState = 7;
     dropYSpeed = 3;
+    dropYSpeedDecrease = 1;
         hasSelectedDifficulty = true;
   } else if (mouseX > 25 && mouseY > 319 && mouseX < 225 && mouseY < 440) {
     println("Hard Mode Selected");
     difficulty = 3;
     colorState = 8;
     dropYSpeed = 4;
+    dropYSpeedDecrease = 2;
         hasSelectedDifficulty = true;
   } else if (mouseX > 0 && mouseY > 0 && mouseX < 250 && mouseY < 450) {
     println("Insane Mode Selected");
     difficulty = 4;
     colorState = 9;
     dropYSpeed = 5;
+    dropYSpeedDecrease = 1000000;
         hasSelectedDifficulty = true;
   }
   }
@@ -168,6 +174,19 @@ void mousePressed() {
 //Draw Methood
 
 void draw() {
+  
+if(lost == true && score < 10){
+  stroke(red,green,blue);
+  fill(red,green,blue);
+  rect(0,0,250,450);
+  stroke(-red,-green,-blue);
+  fill(-red,-green,-blue);
+  textSize(48);
+  text(loseScreenText,17,187);
+  textSize(16);
+  text(loseScreenScoreText,17,187);
+  
+}
   
 //Background Color
   
@@ -185,7 +204,6 @@ void draw() {
     if (dropYSpeed > 5) {
       dropYSpeed = 5;
     }
-    dropYSpeedDecrease = 1;
     bucketWidth = 60;
     fill(0, 50, 200);
   stroke(0, 50, 200);
@@ -204,7 +222,6 @@ void draw() {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
     }
-    dropYSpeedDecrease = 1;
     bucketWidth = 30;
     fill(0, 50, 200);
   stroke(0, 50, 200);
@@ -223,7 +240,6 @@ void draw() {
     if (dropYSpeed > 15) {
       dropYSpeed = 15;
     }
-    dropYSpeedDecrease = 2;
     bucketWidth = 25;
     fill(0, 50, 200);
   stroke(0, 50, 200);
@@ -242,7 +258,6 @@ void draw() {
     if (dropYSpeed > 25) {
       dropYSpeed = 25;
     }
-    dropYSpeedDecrease = 1000000;
     bucketWidth = 15;
     fill(25, 25, 25);
   stroke(25, 25, 25);
@@ -295,6 +310,9 @@ if(dropYSpeed < 0){
   else if (score < 10 && scoreOffsetIncreased == 1){
    scoreOffset --;
    scoreOffsetIncreased --;
+  }
+  if(dropYSpeed == 0){
+   lost = true; 
   }
   }
   
