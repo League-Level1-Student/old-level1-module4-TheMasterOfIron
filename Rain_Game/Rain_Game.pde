@@ -34,8 +34,11 @@ String loseScreenScoreText = "Your Score Was" + score +".";
 
 //App PImage Variables
 
-PImage waterBucket;
 PImage easyWaterBucket;
+PImage waterBucket;
+PImage hardWaterBucket;
+PImage insaneWaterBucket;
+
 //Background Color Switching
 
 void backgroundColor() {
@@ -254,7 +257,7 @@ if(lost == true && score < 10){
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, bucketWidth, 35);
+  image(hardWaterBucket,bucketX,415);
   }
   
 //Insane Specific Scripts
@@ -272,7 +275,7 @@ if(lost == true && score < 10){
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, bucketWidth, 35);
+  image(insaneWaterBucket,bucketX,415);
   }
   
 //Bucket Stuff
@@ -301,7 +304,7 @@ if(dropYSpeed < 0){
 //Score Scripts
   
   if(hasSelectedDifficulty == true){
-  fill(0, 0, 0);
+  fill(255, 255, 255);
   textSize(16);
   text(score, bucketX+bucketWidth / 2 - scoreOffset * 4, 440);
   if (score >= 10 && scoreOffsetIncreased == 0){
@@ -364,7 +367,9 @@ void setup() {
 //Setting Images
   
   easyWaterBucket = loadImage("Easy Water Bucket.png");
-  
+  waterBucket = loadImage("Water Bucket.png");
+  hardWaterBucket = loadImage("Hard Water Bucket.png"); 
+  insaneWaterBucket = loadImage("Insane Water Bucket.png");
 //Setting Size Of Screen
 
   size(250, 450);
