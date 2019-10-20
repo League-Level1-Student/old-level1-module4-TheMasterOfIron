@@ -31,6 +31,11 @@ String normalButtonText = "Normal";
 String hardButtonText = "Hard";
 String loseScreenText = "You Lose!";
 String loseScreenScoreText = "Your Score Was" + score +".";
+
+//App PImage Variables
+
+PImage waterBucket;
+PImage easyWaterBucket;
 //Background Color Switching
 
 void backgroundColor() {
@@ -213,7 +218,7 @@ if(lost == true && score < 10){
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, bucketWidth, 35);
+  image(easyWaterBucket,bucketX,415);
   }
   
 //Medium Specific Scripts
@@ -231,7 +236,7 @@ if(lost == true && score < 10){
   triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
   fill(200, 200, 200);
   stroke(200, 200, 200);
-  rect(bucketX, 415, bucketWidth, 35);
+  image(waterBucket,bucketX,415);
   }
   
 //Hard Specific Scripts
@@ -272,13 +277,9 @@ if(lost == true && score < 10){
   
 //Bucket Stuff
   
-  if (mouseX < 220) {
-    bucketX = mouseX;
-  } else if (mouseX >= 220) {
-    bucketX = 220;
-  }
-  
-//Preventon Of Reversed Rain
+    bucketX = mouseX - bucketWidth/2;
+    
+//Preventon Of Reversed Rain (PRR)
 
 if(dropYSpeed < 0){
   dropYSpeed = 0;
@@ -342,7 +343,7 @@ if(dropYSpeed < 0){
 //Checking To See If Drop Has Been Caught Or Not
 
 void checkCatch(int x) {
-  if ((x >= mouseX && x < mouseX+bucketWidth)) {
+  if ((x >= bucketX && x <= bucketX + bucketWidth)) {
     score++;
     dropYSpeed ++;
   } else if (score > 0 && alreadyHitBottom == 0) {
@@ -359,6 +360,10 @@ void checkCatch(int x) {
 //Setup Methood
 
 void setup() {
+  
+//Setting Images
+  
+  easyWaterBucket = loadImage("Easy Water Bucket.png");
   
 //Setting Size Of Screen
 
