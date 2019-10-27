@@ -1,4 +1,4 @@
-//All Int Variables
+////////////////////////////////////////////////////////////////////////////////////All Int Variables\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 int colorState = 0;
 int red = 255;
@@ -31,6 +31,7 @@ String normalButtonText = "Normal";
 String hardButtonText = "Hard";
 String loseScreenText = "You Lose!";
 String loseScreenScoreText = "Your Score Was" + score +".";
+String scoreInLetters = "" + score;
 
 //App PImage Variables
 
@@ -141,40 +142,41 @@ void backgroundColor() {
 //All The Main Menu Stuff
 
 void mousePressed() {
-  if(hasSelectedDifficulty == false){
-  if (mouseX > 25 && mouseY > 59 && mouseX < 225 && mouseY < 179) {
-    println("Easy Mode Selected");
-    difficulty = 1;
-    colorState = 6;
-    dropYSpeed = 2;
-    dropYSpeedDecrease = 1;
-    hasSelectedDifficulty = true;
-  } else if (mouseX > 25 && mouseY > 189 && mouseX < 225 && mouseY < 309) {
-    println("Normal Mode Selected");
-    difficulty = 2;
-    colorState = 7;
-    dropYSpeed = 3;
-    dropYSpeedDecrease = 1;
-        hasSelectedDifficulty = true;
-  } else if (mouseX > 25 && mouseY > 319 && mouseX < 225 && mouseY < 440) {
-    println("Hard Mode Selected");
-    difficulty = 3;
-    colorState = 8;
-    dropYSpeed = 4;
-    dropYSpeedDecrease = 2;
-        hasSelectedDifficulty = true;
-  } else if (mouseX > 0 && mouseY > 0 && mouseX < 250 && mouseY < 450) {
-    println("Insane Mode Selected");
-    difficulty = 4;
-    colorState = 9;
-    dropYSpeed = 5;
-    dropYSpeedDecrease = 1000000;
-        hasSelectedDifficulty = true;
+  if (hasSelectedDifficulty == false) {
+    if (mouseX > 25 && mouseY > 59 && mouseX < 225 && mouseY < 179) {
+      println("Easy Mode Selected");
+      difficulty = 1;
+      colorState = 6;
+      dropYSpeed = 2;
+      dropYSpeedDecrease = 1;
+      hasSelectedDifficulty = true;
+    } else if (mouseX > 25 && mouseY > 189 && mouseX < 225 && mouseY < 309) {
+      println("Normal Mode Selected");
+      difficulty = 2;
+      colorState = 7;
+      dropYSpeed = 3;
+      dropYSpeedDecrease = 1;
+      hasSelectedDifficulty = true;
+    } else if (mouseX > 25 && mouseY > 319 && mouseX < 225 && mouseY < 440) {
+      println("Hard Mode Selected");
+      difficulty = 3;
+      colorState = 8;
+      dropYSpeed = 4;
+      dropYSpeedDecrease = 2;
+      hasSelectedDifficulty = true;
+    } else if (mouseX > 0 && mouseY > 0 && mouseX < 250 && mouseY < 450) {
+      println("Insane Mode Selected");
+      difficulty = 4;
+      colorState = 9;
+      dropYSpeed = 5;
+      dropYSpeedDecrease = 1000000;
+      hasSelectedDifficulty = true;
+    }
   }
-  }
-  
-//Show Coordinates When Clicked
-  
+
+//////////////////////////////////////////////////////////////////////////Show Coordinates When Clicked\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
   println(mouseX);
   println(mouseY);
 }
@@ -182,114 +184,110 @@ void mousePressed() {
 //Draw Methood
 
 void draw() {
-  
-if(lost == true && score < 10){
-  stroke(red,green,blue);
-  fill(red,green,blue);
-  rect(0,0,250,450);
-  stroke(-red,-green,-blue);
-  fill(-red,-green,-blue);
-  textSize(48);
-  text(loseScreenText,17,187);
-  textSize(16);
-  text(loseScreenScoreText,17,187);
-  
-}
-  
-//Background Color
-  
-    background(red, green, blue);
-  backgroundColor();
-  
-//Nothing Happens If Difficulty Is 0
-  
-  if (difficulty == 0){
+
+  if (lost == true && score < 10) {
+    stroke(red, green, blue);
+    fill(red, green, blue);
+    rect(0, 0, 250, 450);
+    stroke(-red, -green, -blue);
+    fill(-red, -green, -blue);
+    textSize(48);
+    text(loseScreenText, 17, 187);
+    textSize(16);
+    text(loseScreenScoreText, 17, 187);
   }
-  
-//Easy Specific Scripts
-  
-  else if (difficulty == 1) {
+
+////////////////////////////////////////////////////////////////////////////////Background Color\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+  background(red, green, blue);
+  backgroundColor();
+
+  //Easy Specific Scripts
+
+  if (difficulty == 1) {
     if (dropYSpeed > 5) {
       dropYSpeed = 5;
     }
     bucketWidth = 60;
     fill(0, 50, 200);
-  stroke(0, 50, 200);
-  ellipse(dropX+5, dropY+20, 10, 14);
-  fill(0, 50, 200);
-  stroke(0, 50, 200);
-  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  image(easyWaterBucket,bucketX,415);
+    stroke(0, 50, 200);
+    ellipse(dropX+5, dropY+20, 10, 14);
+    fill(0, 50, 200);
+    stroke(0, 50, 200);
+    triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+    fill(200, 200, 200);
+    stroke(200, 200, 200);
+    image(easyWaterBucket, bucketX, 415);
   }
-  
-//Medium Specific Scripts
-  
+
+///////////////////////////////////////////////////////////////////////////////Medium Specific Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   else if (difficulty == 2) {
     if (dropYSpeed > 10) {
       dropYSpeed = 10;
     }
     bucketWidth = 30;
     fill(0, 50, 200);
-  stroke(0, 50, 200);
-  ellipse(dropX+5, dropY+20, 10, 14);
-  fill(0, 50, 200);
-  stroke(0, 50, 200);
-  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  image(waterBucket,bucketX,415);
+    stroke(0, 50, 200);
+    ellipse(dropX+5, dropY+20, 10, 14);
+    fill(0, 50, 200);
+    stroke(0, 50, 200);
+    triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+    fill(200, 200, 200);
+    stroke(200, 200, 200);
+    image(waterBucket, bucketX, 415);
   }
-  
-//Hard Specific Scripts
-  
+
+/////////////////////////////////////////////////////////////////////////////////Hard Specific Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   else if (difficulty == 3) {
     if (dropYSpeed > 15) {
       dropYSpeed = 15;
     }
     bucketWidth = 25;
     fill(0, 50, 200);
-  stroke(0, 50, 200);
-  ellipse(dropX+5, dropY+20, 10, 14);
-  fill(0, 50, 200);
-  stroke(0, 50, 200);
-  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  image(hardWaterBucket,bucketX,415);
+    stroke(0, 50, 200);
+    ellipse(dropX+5, dropY+20, 10, 14);
+    fill(0, 50, 200);
+    stroke(0, 50, 200);
+    triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+    fill(200, 200, 200);
+    stroke(200, 200, 200);
+    image(hardWaterBucket, bucketX, 415);
   }
-  
-//Insane Specific Scripts
-  
+
+////////////////////////////////////////////////////////////////////////////////Insane Specific Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   else if (difficulty == 4) {
     if (dropYSpeed > 25) {
       dropYSpeed = 25;
     }
     bucketWidth = 15;
     fill(25, 25, 25);
-  stroke(25, 25, 25);
-  ellipse(dropX+5, dropY+20, 10, 14);
-  fill(25, 25, 25);
-  stroke(25, 25, 25);
-  triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  image(insaneWaterBucket,bucketX,415);
+    stroke(25, 25, 25);
+    ellipse(dropX+5, dropY+20, 10, 14);
+    fill(25, 25, 25);
+    stroke(25, 25, 25);
+    triangle(dropX, dropY+20, dropX+10, dropY+20, dropX+5, dropY);
+    fill(200, 200, 200);
+    stroke(200, 200, 200);
+    image(insaneWaterBucket, bucketX, 415);
   }
-  
-//Bucket Stuff
-  
-    bucketX = mouseX - bucketWidth/2;
-    
-//Preventon Of Reversed Rain (PRR)
 
-if(dropYSpeed < 0){
-  dropYSpeed = 0;
-}
+////////////////////////////////////////////////////////////////////////////////////Bucket Stuff\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-//Drop Being Caught Or Not And Teleportation
-  
+
+  bucketX = mouseX - bucketWidth/2;
+
+///////////////////////////////////////////////////////////////////////////Preventon Of Reversed Rain (PRR)\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+  if (dropYSpeed < 0) {
+    dropYSpeed = 0;
+  }
+
+/////////////////////////////////////////////////////////////////////Drop Being Caught Or Not And Teleportation\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   dropY +=dropYSpeed;
   if ((dropY < 430)&&(dropY+dropYSpeed>= 430)) {
     checkCatch(dropX);
@@ -300,47 +298,61 @@ if(dropYSpeed < 0){
     dropX = randomNumber;
     alreadyHitBottom = 0;
   }
-  
-//Score Scripts
-  
-  if(hasSelectedDifficulty == true){
-  fill(255, 255, 255);
-  textSize(16);
-  text(score, bucketX+bucketWidth / 2 - scoreOffset * 4, 440);
-  if (score >= 10 && scoreOffsetIncreased == 0){
-   scoreOffset ++;
-   scoreOffsetIncreased ++;
-  }
-  else if (score < 10 && scoreOffsetIncreased == 1){
-   scoreOffset --;
-   scoreOffsetIncreased --;
-  }
-  if(dropYSpeed == 0){
-   lost = true; 
-  }
-  }
-  
-//Main Menu Boxes
-  
-    if(hasSelectedDifficulty == false){
-  fill(0, 255, 0);
-  rect(25, 59, 200, 120);
-  fill(0, 0, 0);
-  textSize(40);
-  text(easyButtonText, 85, 134);
-  fill(255, 255, 0);
-  rect(25, 189, 200, 120);
-  fill(0, 0, 0);
-  textSize(40);
-  text(normalButtonText, 55, 264);
-  fill(255, 0, 0);
-  rect(25, 319, 200, 120);
-  fill(0, 0, 0);
-  textSize(40);
-  text(hardButtonText, 80, 394);
-  textSize(40);
-  text(title, 22, 40);
+
+////////////////////////////////////////////////////////////////////////////////////Score Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+  if (hasSelectedDifficulty == true) {
+    scoreInLetters.length();
+    fill(255, 255, 255);
+    textSize(16);
+    text(score, bucketX+bucketWidth / 2 - scoreOffset * 4, 440);
+    if (score >= 10 && scoreOffsetIncreased == 0) {
+      scoreOffset ++;
+      scoreOffsetIncreased ++;
+    } else if (score < 10 && scoreOffsetIncreased == 1) {
+      scoreOffset --;
+      scoreOffsetIncreased --;
     }
+    if (score >= 100 && scoreOffsetIncreased == 1) {
+      scoreOffset ++;
+      scoreOffsetIncreased ++;
+    } else if (score < 100 && scoreOffsetIncreased == 2) {
+      scoreOffset --;
+      scoreOffsetIncreased --;
+    }
+    if (score >= 1000 && scoreOffsetIncreased == 2) {
+      scoreOffset ++;
+      scoreOffsetIncreased ++;
+    } else if (score < 1000 && scoreOffsetIncreased == 3) {
+      scoreOffset --;
+      scoreOffsetIncreased --;
+    }
+    if (dropYSpeed == 0) {
+      lost = true;
+    }
+
+    //Main Menu Boxes
+
+    if (hasSelectedDifficulty == false) {
+      fill(0, 255, 0);
+      rect(25, 59, 200, 120);
+      fill(0, 0, 0);
+      textSize(40);
+      text(easyButtonText, 85, 134);
+      fill(255, 255, 0);
+      rect(25, 189, 200, 120);
+      fill(0, 0, 0);
+      textSize(40);
+      text(normalButtonText, 55, 264);
+      fill(255, 0, 0);
+      rect(25, 319, 200, 120);
+      fill(0, 0, 0);
+      textSize(40);
+      text(hardButtonText, 80, 394);
+      textSize(40);
+      text(title, 22, 40);
+    }
+  }
 }
 
 //Checking To See If Drop Has Been Caught Or Not
@@ -353,8 +365,7 @@ void checkCatch(int x) {
     score--;
     dropYSpeed -= dropYSpeedDecrease;
     alreadyHitBottom = 1;
-  }
-  else if (score == 0 && alreadyHitBottom == 0) {
+  } else if (score == 0 && alreadyHitBottom == 0) {
     dropYSpeed -= dropYSpeedDecrease;
     alreadyHitBottom = 1;
   }
@@ -363,14 +374,14 @@ void checkCatch(int x) {
 //Setup Methood
 
 void setup() {
-  
-//Setting Images
-  
+
+  //Setting Images
+
   easyWaterBucket = loadImage("Easy Water Bucket.png");
   waterBucket = loadImage("Water Bucket.png");
   hardWaterBucket = loadImage("Hard Water Bucket.png"); 
   insaneWaterBucket = loadImage("Insane Water Bucket.png");
-//Setting Size Of Screen
+  //Setting Size Of Screen
 
   size(250, 450);
 }
