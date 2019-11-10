@@ -18,12 +18,12 @@ int scoreOffsetIncreased = 0;
 int dropX = 0;
 int dropY = 450;
 
-//All Boolean Variables
+////////////////////////////////////////////////////////////////////////////////All Boolean Variables\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 boolean hasSelectedDifficulty = false;
 boolean lost = false;
 
-//All String Variables
+/////////////////////////////////////////////////////////////////////////////////All String Variables\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 String title = "Rain Game";
 String easyButtonText = "Easy";
@@ -33,14 +33,14 @@ String loseScreenText = "You Lose!";
 String loseScreenScoreText = "Your Score Was" + score +".";
 String scoreInLetters = "" + score;
 
-//App PImage Variables
+/////////////////////////////////////////////////////////////////////////////////App PImage Variables\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 PImage easyWaterBucket;
 PImage waterBucket;
 PImage hardWaterBucket;
 PImage insaneWaterBucket;
 
-//Background Color Switching
+///////////////////////////////////////////////////////////////////////////////Background Color Switching\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 void backgroundColor() {
   if (colorState == 0) {
@@ -139,7 +139,7 @@ void backgroundColor() {
   }
 }
 
-//All The Main Menu Stuff
+///////////////////////////////////////////////////////////////////////////All The Main Menu Stuff\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 void mousePressed() {
   if (hasSelectedDifficulty == false) {
@@ -181,7 +181,7 @@ void mousePressed() {
   println(mouseY);
 }
 
-//Draw Methood
+//////////////////////////////////////////////////////////////////////////////////Draw Methood\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 void draw() {
 
@@ -202,7 +202,7 @@ void draw() {
   background(red, green, blue);
   backgroundColor();
 
-  //Easy Specific Scripts
+/////////////////////////////////////////////////////////////////////////////Easy Specific Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
   if (difficulty == 1) {
     if (dropYSpeed > 5) {
@@ -331,7 +331,7 @@ void draw() {
       lost = true;
     }
 
-    //Main Menu Boxes
+/////////////////////////////////////////////////////////////////////////////////////Main Menu Boxes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     if (hasSelectedDifficulty == false) {
       fill(0, 255, 0);
@@ -355,7 +355,7 @@ void draw() {
   }
 }
 
-//Checking To See If Drop Has Been Caught Or Not
+//////////////////////////////////////////////////////////////////////////Checking To See If Drop Has Been Caught Or Not\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 void checkCatch(int x) {
   if ((x >= bucketX && x <= bucketX + bucketWidth)) {
@@ -371,17 +371,17 @@ void checkCatch(int x) {
   }
 }
 
-//Setup Methood
+//////////////////////////////////////////////////////////////////////////////////////////Setup Methood\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 void setup() {
 
-  //Setting Images
+/////////////////////////////////////////////////////////////////////////////////////////Setting Images\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
   easyWaterBucket = loadImage("Easy Water Bucket.png");
   waterBucket = loadImage("Water Bucket.png");
   hardWaterBucket = loadImage("Hard Water Bucket.png"); 
   insaneWaterBucket = loadImage("Insane Water Bucket.png");
-  //Setting Size Of Screen
+/////////////////////////////////////////////////////////////////////////////////////Setting Size Of Screen\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
   size(250, 450);
 }
