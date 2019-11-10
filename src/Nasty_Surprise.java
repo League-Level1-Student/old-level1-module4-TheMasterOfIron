@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 public class Nasty_Surprise {
-	private void showPictureFromTheInternet(String https://www.google.com/search?q=puppy&sxsrf=ACYBGNT6qMpD_RCYnnDe4w0_TQQgo35Stg:1573414087512&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjI-JSesODlAhUZIjQIHS3ZDugQ_AUIEigB&biw=934&bih=720&dpr=1.25#imgrc=NuHW-1lFpv8eoM:) {
+	private void showPictureFromTheInternet(String imageUrl) {
 	    try {
-	        URL url = new URL(https://www.google.com/search?q=puppy&sxsrf=ACYBGNT6qMpD_RCYnnDe4w0_TQQgo35Stg:1573414087512&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjI-JSesODlAhUZIjQIHS3ZDugQ_AUIEigB&biw=934&bih=720&dpr=1.25#imgrc=NuHW-1lFpv8eoM:);
+	        URL url = new URL("https://www.google.com/search?q=puppy&sxsrf=ACYBGNT6qMpD_RCYnnDe4w0_TQQgo35Stg:1573414087512&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjI-JSesODlAhUZIjQIHS3ZDugQ_AUIEigB&biw=934&bih=720&dpr=1.25#imgrc=NuHW-1lFpv8eoM:");
 	        Icon icon = new ImageIcon(url);
 	        JLabel imageLabel = new JLabel(icon);
 	        JFrame frame = new JFrame();
