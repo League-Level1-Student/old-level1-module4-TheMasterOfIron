@@ -2,7 +2,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -11,15 +10,18 @@ import javax.swing.JButton;
 public class Whack_A_Mole implements ActionListener, Runnable {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
-	Random randy = new Random(1000000);
+	Random randy = new Random();
+	JButton mole;
 
 	private void drawButtons(int randy) {
 		for (int i = 0; i <= 100; i++) {
 			JButton button = new JButton();
 			button.addActionListener(this);
-			button.setSize(50,50);
-			button.setBackground(Color.RED);
 			panel.add(button);
+			if (i == randy) {
+				mole = button;
+				button.setText("MOLE!");
+			}
 		}
 	}
 
@@ -30,8 +32,16 @@ public class Whack_A_Mole implements ActionListener, Runnable {
 	public void run() {
 		frame.add(panel);
 		frame.setVisible(true);
-		drawButtons(1000);
+		int randomNumber = randy.nextInt(100);
+		drawButtons(randomNumber);
 		frame.setSize(550, 600);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mole.setText("");
 
 	}
 
