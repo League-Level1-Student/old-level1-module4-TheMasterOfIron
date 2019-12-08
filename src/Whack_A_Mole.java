@@ -30,6 +30,7 @@ public class Whack_A_Mole implements ActionListener, Runnable {
 	}
 
 	public void run() {
+		frame.setTitle("Whack-A-Mole");
 		frame.add(panel);
 		frame.setVisible(true);
 		int randomNumber = randy.nextInt(100);
@@ -38,16 +39,32 @@ public class Whack_A_Mole implements ActionListener, Runnable {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mole.setText("");
 
+	}
+
+	void speak(String words) {
+		try {
+			Runtime.getRuntime().exec("say " + words).waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		JButton pressed = (JButton) e.getSource();
+		if (pressed.getText().equals("MOLE!")) {
+			speak("Owww!");
+			System.out.println("Owww!");
+			int randomNumber = randy.nextInt(100);
+			drawButtons(randomNumber);
+		} else {
+			speak("Better luck next time.");
+			System.out.println("Better luck next time.");
+			int randomNumber = randy.nextInt(100);
+			drawButtons(randomNumber);
+		}
 	}
 }
