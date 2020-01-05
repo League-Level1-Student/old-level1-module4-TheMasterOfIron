@@ -30,11 +30,12 @@ public static void main(String[] args) {
 		subtract.setText("Subtract");
 		multiply.setText("Multiply");
 		divide.setText("Divide");
-		exponent.setText("exponent");
+		exponent.setText("Exponent");
 		add.addActionListener(this);
 		subtract.addActionListener(this);
 		multiply.addActionListener(this);
 		divide.addActionListener(this);
+		exponent.addActionListener(this);
 		panel.add(firstNumber);
 		panel.add(secondNumber);
 		panel.add(add);
@@ -69,6 +70,10 @@ public void actionPerformed(ActionEvent e) {
 	if (buttonPressed == (divide)) {
 		int answer = numberOne / numberTwo;
 		JOptionPane.showMessageDialog(null, numberOne + "/" + numberTwo + "=" + answer);
+	}
+	if (buttonPressed == (exponent)) {
+		int answer = numberOne ^ numberTwo;
+		JOptionPane.showMessageDialog(null, numberOne + "^" + numberTwo + "=" + answer);
 	}
 }
 }
