@@ -43,16 +43,16 @@ public class Chuckle_Clicker implements ActionListener, Runnable {
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
 		if (buttonPressed == (joke)) {
-			int test = JOptionPane.showConfirmDialog(null, "What is a skeleton's favorite instrument?\nClick Yes to see the answer.");
-			if (test == 0) {
-				JOptionPane.showMessageDialog(null, "The xylobone.");
-			}
-			else if (test == 1) {
-				JOptionPane.showMessageDialog(null, "Ok :(");
-			}
-			System.out.println(test);
+			JOptionPane.showMessageDialog(null, "What is a skeleton's favorite instrument?");
 		}
-		if (buttonPressed == (punchline)) {
+		if (buttonPressed == (punchline) && punchlineText == "[insert punchline here]") {
+			int punchlineTest = JOptionPane.showOptionDialog(null, punchlineText, "Punchline", 0, JOptionPane.INFORMATION_MESSAGE, null, new String[] {"Why?"}, null);
+			if (punchlineTest == 0) {
+				punchlineText = JOptionPane.showInputDialog("Because i'm too lazy.");
+			}
+			System.out.println(punchlineTest);
+		}
+		else if (buttonPressed == (punchline) && punchlineText != "[insert punchline here]") {
 			JOptionPane.showMessageDialog(null, punchlineText);
 		}
 	}
