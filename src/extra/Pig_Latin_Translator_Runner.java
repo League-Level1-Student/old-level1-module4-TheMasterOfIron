@@ -41,6 +41,8 @@ public void actionPerformed(ActionEvent e) {
 	String textToTranslate = texter.getText();
 	if (buttonPressed == (translateButton)) {
 		System.out.println("translating " + textToTranslate + "...");
+		String translatedText = pigLatinTranslator.translate(textToTranslate);
+		dexter.setText(translatedText);
 				}
 }
 }
