@@ -9,6 +9,7 @@ static JFrame frame = new JFrame();
 public static void main(String[] args) {
 	frame.add(panel);
 	panel.setName("TYPE OR DIE!");
+	frame.setTitle("TYPE OR DIE!");
 	frame.show();
 }
 }
