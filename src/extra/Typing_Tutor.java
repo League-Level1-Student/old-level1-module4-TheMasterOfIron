@@ -1,15 +1,15 @@
 package extra;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.Random;
 
 public class Typing_Tutor {
-static JPanel panel = new JPanel();
-static JFrame frame = new JFrame();
-public static void main(String[] args) {
-	frame.add(panel);
-	panel.setName("TYPE OR DIE!");
-	frame.setTitle("TYPE OR DIE!");
-	frame.show();
+public void main(String[] args) {
+	
+	
+
+}
+static char generateRandomLetter() {
+    Random r = new Random();
+    return (char) (r.nextInt(26) + 'a');
 }
 }
