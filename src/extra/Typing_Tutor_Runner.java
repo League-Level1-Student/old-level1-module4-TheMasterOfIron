@@ -44,9 +44,8 @@ public class Typing_Tutor_Runner implements Runnable, KeyListener {
 		if (currentLetter == e.getKeyChar()) {
 			System.out.println("CORRECT!");
 			frame.setBackground(Color.green);
-		}
-		else {
-			System.out.println("WRONG!");	
+		} else {
+			System.out.println("WRONG!");
 			frame.setBackground(Color.red);
 		}
 		System.out.println("released");
