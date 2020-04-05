@@ -2,6 +2,7 @@ package extra;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -12,12 +13,11 @@ import javax.swing.SwingUtilities;
 
 public class Slot_Machine_Runner implements Runnable {
 	JFrame frame = new JFrame();
-	JPanel panel1 = new JPanel();
-	JPanel panel2 = new JPanel();
-	JPanel panel3 = new JPanel();
+	JPanel panel = new JPanel();
 	JLabel image1 = new JLabel();
 	JLabel image2 = new JLabel();
 	JLabel image3 = new JLabel();
+	Random randy = new Random();
 public static void main(String[] args) {
 	SwingUtilities.invokeLater(new Slot_Machine_Runner());
 }
@@ -42,10 +42,10 @@ public void run() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	panel1.add(image1);
-	frame.add(panel1);
-	panel1.add(image2);
-	panel1.add(image3);
+	frame.add(panel);	
+	panel.add(image1);
+	panel.add(image2);
+	panel.add(image3);
 	frame.setVisible(true);
 	frame.setSize(2000, 500);
 
