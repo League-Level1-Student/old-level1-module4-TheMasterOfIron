@@ -8,8 +8,11 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import com.sun.prism.paint.Stop;
 
 public class Slot_Machine_Runner implements Runnable {
 	JFrame frame = new JFrame();
@@ -24,20 +27,49 @@ public static void main(String[] args) {
 
 @Override
 public void run() {
+	int randomnumber = randy.nextInt(3);
+	int randomnumber2 = randy.nextInt(3);
+	int randomnumber3 = randy.nextInt(3);
 	try {
-		image1 = createLabelImage("cherry.png");
+		if (randomnumber == 0) {
+			image1 = createLabelImage("cherry.png");
+		}
+		else if (randomnumber == 1) {
+	image1 = createLabelImage("seven.png");
+		}
+		else if (randomnumber == 2) {
+	image1 = createLabelImage("bar.png");
+}		
 	} catch (MalformedURLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	try {
-		image2 = createLabelImage("seven.png");
+		if (randomnumber2 == 0) {
+			image2 = createLabelImage("cherry.png");
+		}
+		else if (randomnumber2 == 1) {
+	image2 = createLabelImage("seven.png");
+		}
+		else if (randomnumber2 == 2) {
+	image2 = createLabelImage("bar.png");
+}		
 	} catch (MalformedURLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	try {
-		image3 = createLabelImage("bar.png");
+		if (randomnumber3 == 0) {
+			image3 = createLabelImage("cherry.png");
+		}
+		else if (randomnumber3 == 1) {
+	image3 = createLabelImage("seven.png");
+		}
+		else if (randomnumber3 == 2) {
+	image3 = createLabelImage("bar.png");
+}		
 	} catch (MalformedURLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -47,8 +79,19 @@ public void run() {
 	panel.add(image2);
 	panel.add(image3);
 	frame.setVisible(true);
-	frame.setSize(2000, 500);
-
+	frame.pack();
+	if (randomnumber == 0 && randomnumber2 == 0 && randomnumber3 == 0) {
+		JOptionPane.showMessageDialog(null, "Congratulations you won with all cherries./eEnjoy the feast.");
+	}
+	else if (randomnumber == 1 && randomnumber2 == 1 && randomnumber3 == 1) {
+		JOptionPane.showMessageDialog(null, "Congratulations you won with all sevens./eGood thing they're not all 6.");
+	}
+	else if (randomnumber == 3 && randomnumber2 == 3 && randomnumber3 == 3) {
+		JOptionPane.showMessageDialog(null, "Congratulations you won with all bars./eMake sure not to walk into one.");
+}	
+	else {
+		JOptionPane.showMessageDialog(null, "Better luck next time.");
+	}
 }
 private JLabel createLabelImage(String fileName) throws MalformedURLException {
 	URL imageURL = getClass().getResource(fileName);
