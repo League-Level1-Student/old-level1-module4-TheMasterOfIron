@@ -90,7 +90,7 @@ public void run() {
 		JOptionPane.showMessageDialog(null, "Congratulations you won with all bars./eMake sure not to walk into one.");
 }	
 	else {
-		JOptionPane.showMessageDialog(null, "Better luck next time.");
+		JOptionPane.showMessageDialog(null, "Better luck next time.");w
 	}
 }
 private JLabel createLabelImage(String fileName) throws MalformedURLException {
